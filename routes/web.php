@@ -14,5 +14,36 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    $conferences = [
+        1 => [
+            'title' => 'Hello',
+            'content' => 'AAAAAAAAAA',
+        ],
+        2 => [
+            'title' => 'World',
+            'content' => 'BBBBBBBBBB',
+        ],
+    ];
+
+    return view('home.index', ['conferences' => $conferences]);
+})->name('index');
+
+Route::get('/create', function () {
+
+    return view('home.create');
+})->name('create');
+
+Route::get('/update', function () {
+
+    return view('home.update');
+})->name('update');
+
+Route::post('/create', function () {
+
+    return 'create post';
+})->name('create');
+
+Route::post('/update', function () {
+
+    return 'update post';
+})->name('update');
