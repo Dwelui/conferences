@@ -6,14 +6,16 @@
   <form action="{{ route('edit') }}" method="POST">
     @csrf
     <input type="text" name="id" id="id" value="{{ $conference['id'] }}" style="display: none">
-    <label for="name"><p>Name</p></label>
-    <input type="text" name="name" id="name" value={{ $conference['name'] }}>
-    <label for="description"><p>Description</p></label>
-    <textarea name="description" id="description" cols="30" rows="10">{{ $conference['description'] }}</textarea>
-    <label for="date"><p>Date</p></label>
-    <input type="date" name="date" id="date" value={{ $conference['date'] }}>
-    <label for="location"><p>Location</p></label>
-    <input type="text" name="location" id="location" value={{ $conference['location'] }}>
+    <label for="name"><p>Name</p></label> <br>
+    <input type="text" name="name" id="name" value={{ $conference['name'] }}> <br> <br>
+    <label for="description"><p>Description</p></label> <br>
+    <textarea name="description" id="description" cols="30" rows="10">{{ $conference['description'] }}</textarea> <br> <br>
+    <label for="date"><p>Date</p></label> <br>
+    <input type="date" name="date" id="date" value={{ $conference['date'] }}> <br> <br>
+    <label for="location"><p>Location</p></label> <br>
+    <input type="text" name="location" id="location" value={{ $conference['location'] }}> <br> <br>
     <input type="submit" value="Update">
   </form>
+  <br>
+  <a href="{{ route('home.index') }}">Back</a>
 @endsection
