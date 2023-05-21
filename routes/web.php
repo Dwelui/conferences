@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use \App\Http\Controllers\ConferenceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,37 +16,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    $conferences = [
-        1 => [
-            'title' => 'Hello',
-            'content' => 'AAAAAAAAAA',
-        ],
-        2 => [
-            'title' => 'World',
-            'content' => 'BBBBBBBBBB',
-        ],
-    ];
+Route::get('/', [ConferenceController::class, 'index'])->name('home.index');
+Route::get('/create', [ConferenceController::class, 'create'])->name('create');
+Route::get('/update/{id}', [ConferenceController::class, 'update'])->name('update');
 
-    return view('home.index', ['conferences' => $conferences]);
-})->name('index');
+Route::get('/delete/{id}', [ConferenceController::class, 'delete'])->name('delete');
+Route::post('/submit', [ConferenceController::class, 'submit'])->name('submit');
+Route::post('/edit', [ConferenceController::class, 'edit'])->name('edit');
 
-Route::get('/create', function () {
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-    return view('home.create');
-})->name('create');
-
-Route::get('/update', function () {
-
-    return view('home.update');
-})->name('update');
-
-Route::post('/create', function () {
-
-    return 'create post';
-})->name('create');
-
-Route::post('/update', function () {
-
-    return 'update post';
-})->name('update');
+Route::get('login', [LoginController::class, 'showLoginForm'])->name('login.form');
+Route::post('login', [LoginController::class, 'login'])->name('login');
+Route::post('logout', [LoginController::class, 'logout'])->name('logout');
